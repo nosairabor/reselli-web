@@ -1,43 +1,82 @@
 import { Women, Men, Designer, Kids } from "@/data/navbarDropdownInfo";
 import Link from "next/link";
+import { useState } from 'react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import localFont from "next/font/local";
+
+
 
 const categories = { Women, Men, Designer, Kids };
 
-const DesktopNavbar = () => {
-  return (
-    <div className="bg-black">
-      <nav className="z-40 flex justify-center items-center gap-x-12">
-        {Object.entries(categories).map(([key, value]) => (
-          <div key={key} className="relative group">
-            <div className="dropdown bg-black text-white cursor-pointer">
-              <h2 className="text-base hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">{key}</h2>
-            </div>
+const lato = localFont({
+  src: "../../fonts/Lato-Regular.ttf",
+})
 
-            {/* Dropdown */}
-            <div className="shadow-lg z-40 absolute hidden group-hover:flex justify-center px-5 py-4 items-center bg-white w-[310px] text-[14px]">
-              <div className="flex flex-wrap  translate-x-6 ">
-                {value.map((category) => (
-                
-                  <div key={category.category} className="mb-8 w-1/2">
-                    <h3 className="font-black text-base mb-2">{category.category}</h3>
-                    
-                    <ul className="flex flex-col space-y-1">
-                      {category.items.map((item) => (
-                        <li key={item.name} className="font-light">
-                          <Link href={item.link} className="  text-black hover:text-blue-600">
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                  </div>
-                ))}
-              </div>
+
+const DesktopNavbar = () => {
+  const [activeSubMenu, setActiveSubMenu] = useState('web-development');
+  return (
+    // <nav className="bg-black">
+    //   <ul className="z-40 flex justify-center items-center gap-x-12 text-[14px]">
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">Women</li>
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">Men</li>
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">Kids</li>
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">Designer</li>
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">VIP Wardrobe</li>
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">Aso-Ebi</li>
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">Hair</li>
+    //     <li className="text-[14px] text-white hover:bg-white hover:text-black hover:underline p-2  hover:transition-all hover:duration-150 hover:delay-150">Clearance sales</li>
+
+    //   </ul>
+    // </nav>
+    <div className={`bg-black ${lato.className} text-white`}>
+      <div className="relative dropdown z-40 flex justify-center items-center gap-x-12 text-[14px] py-2">
+        <h2 className=" text-white">Women</h2>
+        <div className="bg-white  top-9 dropdown-content">
+          <div
+            className={`has-sub ${
+              activeSubMenu === 'web-development' ? 'default' : ''
+            }`}
+            onClick={() => setActiveSubMenu('web-development')}
+          >
+            <a href="#web-development">Web Development</a>
+            <div className="sub-dropdown-content">
+              <a href="#frontend">Frontend Development</a>
+              <a href="#backend">Backend Development</a>
+              <a href="#fullstack">Fullstack Development</a>
             </div>
           </div>
-        ))}
-      </nav>
+          <div
+            className="has-sub"
+            onClick={() => setActiveSubMenu('app-development')}
+          >
+            <a href="#app-development">App Development</a>
+            <div className="sub-dropdown-content">
+              <a href="#android">Android Development</a>
+              <a href="#ios">iOS Development</a>
+              <a href="#cross-platform">Cross-Platform</a>
+            </div>
+          </div>
+          <div
+            className="has-sub"
+            onClick={() => setActiveSubMenu('seo')}
+          >
+            <a href="#seo">SEO</a>
+            <div className="sub-dropdown-content">
+              <a href="#onpage">On-Page SEO</a>
+              <a href="#offpage">Off-Page SEO</a>
+              <a href="#technical">Technical SEO</a>
+            </div>
+          </div>
+        </div>
+        <h2>Men</h2>
+        <h2>Kids</h2>
+        <h2>Designer</h2>
+        <h2>VIP Wardrobe</h2>
+        <h2>Aso-Ebi</h2>
+        <h2>Hair</h2>
+        <h2>Clearance Sales</h2>
+      </div>
     </div>
   );
 };

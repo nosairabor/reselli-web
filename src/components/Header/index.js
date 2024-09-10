@@ -15,11 +15,15 @@ import localFont from "next/font/local";
 import { TiHeartOutline } from "react-icons/ti";
 import { GrShop } from "react-icons/gr";
 import DesktopNavbar from "../navbar/desktopNavbar";
+import ButtonII from "../button/index";
 
 
-
+//fonts
 const lato = localFont({
   src: "../../fonts/Lato-Regular.ttf",
+})
+const futura = localFont({
+  src: "../../fonts/FuturaCMedium.ttf",
 })
 
 
@@ -131,7 +135,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="text-base flex  px-2 gap-3">
+        <div className="text-base flex  px-2 gap-4">
           <div className="cursor-pointer flex gap-x-2 mt-1" onClick={() => setOpenLoginModal(true)}>
               <Image 
                 src= {"/image/my-account.svg"}
@@ -176,6 +180,13 @@ const Header = () => {
               color="#4E31AA"
             />
           </Link> */}
+          <Link href="/seller-profile" className="">
+            <ButtonII
+              className="bg-black text-white !px-5 rounded-[15px] !h-8 !min-w-[60px]"
+              text="Become a Seller"
+
+            />
+          </Link>
         </div>
 
         {openLoginModal && (
