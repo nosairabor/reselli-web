@@ -135,4 +135,64 @@ box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 /* Make the first sub-dropdown visible by default */
 .dropdown-content .default .sub-dropdown-content {
   display: block;
+.rs-nav.rs-nav-subtle.rs-nav-vertical {
+  margin-right: 2.5rem;
+  width: 25%;
+}
+
+/* .rs-toggle-checked.rs-toggle-presentation {
+  background-color: [#000] !important;
+}
+
+.rs-toggle-presentation {
+background-color: black;
+} */
+
+.rs-toggle-checked .rs-toggle-presentation {
+  background-color: #000 !important;
+  /* background-color: var(--rs-toggle-checked-bg); */
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #fff;
+  color: var(--rs-toggle-checked-thumb);
+}
+
+
+
+/* Profile starts here */
+/* styles/globals.css */
+
+.profile-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-section {
+  margin-bottom: 30px;
+}
+
+.profile-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.profile-section p {
+  margin: 5px 0;
+}
+
+button {
+  background-color: #000;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.rs-uploader-trigger-btn .rs-btn .  rs-btn-ghost {
+  background-color: transparent;
+  border: 1px solid #000;
+  /* border: 1px solid var(--rs-btn-ghost-border); */
+  color: #000;
 }

@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { LoaderKey } from "../utils/loaderKey";
 import * as Yup from "yup";
+import Home from "@/pages";
 
 const LoginModal = ({
   close,
@@ -55,7 +56,8 @@ const LoginModal = ({
     // we will set the loginmodal to false when the login process is successfyll
     if (loginisSuccess) {
       close(false);
-      router.push("/dashboard");
+      //login and push to Home
+      router.push("/");
     }
   }, [loginisSuccess]);
 

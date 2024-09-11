@@ -1,0 +1,16 @@
+div.rs-nav.rs-nav-subtle.rs-nav-vertical{
+    @apply w-1/4 mr-10;
+}
+
+.rs-nav.rs-nav-subtle.rs-nav-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.rs-tabs.rs-tabs-vertical {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+}
