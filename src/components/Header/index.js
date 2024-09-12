@@ -11,17 +11,11 @@ import localFont from "next/font/local";
 import { TiHeartOutline } from "react-icons/ti";
 import { GrShop } from "react-icons/gr";
 import DesktopNavbar from "../navbar/desktopNavbar";
-import ButtonII from "../button/index";
+import Link from "next/link";
 
-
-//fonts
 const lato = localFont({
   src: "../../fonts/Lato-Regular.ttf",
-})
-const futura = localFont({
-  src: "../../fonts/FuturaCMedium.ttf",
-})
-
+});
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -127,11 +121,15 @@ const Header = () => {
           />
         </div>
 
-        <div className="text-base flex  px-2 gap-4">
-          <div className="cursor-pointer flex gap-x-2 mt-1" onClick={() => setOpenLoginModal(true)}>
-              <Image 
-                src= {"/image/my-account.svg"}
-                className=" h-[27px] w-[27px]"
+        <div className="text-base flex items-center px-2 gap-3">
+          {!currentUser ? (
+            <div
+              className="cursor-pointer flex gap-x-2 mt-1"
+              onClick={() => setOpenLoginModal(true)}
+            >
+              <Image
+                src={"/image/my-account.svg"}
+                className="h-[27px] w-[27px]"
                 alt=""
                 width={0}
                 height={0}
@@ -139,34 +137,79 @@ const Header = () => {
               />
               <p className="mt-[2px]">Sign in</p>
             </div>
-          {/* ) : (
+          ) : (
             <div
               className="relative"
               onClick={handleMenuToggle}
               ref={menuRef}
-            > */}
+            >
               {/* Avatar image */}
-              {/* <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#000] text-white text-lg cursor-pointer">
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#000] text-white text-lg cursor-pointer">
                 {currentUser?.firstName?.split("")[0]}
                 {currentUser?.lastName?.split("")[0]}
-              </div> */}
+              </div>
 
-          {/* <Button type={"primary"} text={"Sell"} extraClasses={"ml-3"} /> */}
-          {/* <Link href={"/user/profile"} className="ml-4">
-            <Avatar
-              src="https://i.pravatar.cc/150?u=2"
-              circle
-              bordered
-              color="#4E31AA"
-            />
-          </Link> */}
-          <Link href="/seller-profile" className="">
-            <ButtonII
-              className="bg-black text-white !px-5 rounded-[15px] !h-8 !min-w-[60px]"
-              text="Become a Seller"
+              {/* Dropdown Menu */}
+              {isMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                  <ul className="py-2">
+                    <li>
+                      <Link href="/user/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/user/settings" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        Settings
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/user/personalization" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        Personalization
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/user/wallet" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        Wallet
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/user/orders" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                       My Orders
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/donations" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        Donations
+                      </Link>
+                    </li>
+                    <li>
+                    <Link href="/invite" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        Invite friends
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => dispatch(ClearUserInfo())}
+                        className="block px-4 py-2 bg-inherit text-red-400 hover:bg-gray-100 w-full text-left"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
 
-            />
-          </Link>
+          <div className="cursor-pointer flex gap-x-1 mt-[2px]">
+            <TiHeartOutline className="w-[32px] h-[38px] text-black" />
+            <p className="text-base mt-[6px]">Wishlist</p>
+          </div>
+          <div className="cursor-pointer flex gap-x-1 mt-[1px]">
+            <GrShop className="w-[32px] h-[38px] text-black" />
+            <p className="text-base mt-[6px]">N0.00</p>
+          </div>
         </div>
 
         {openLoginModal && (
